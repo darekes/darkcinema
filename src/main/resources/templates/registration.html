@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration form</title>
+    <style>
+        th, td{
+            padding: 15px;
+        }
+        td span{
+            font-style: italic;
+            font-size: 90%;
+            color: #ff0000;
+        }
+        .error{
+            color: #ff0000;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+<h1>Client registration form:</h1>
+
+<div th:if="${errorMessage != null}" th:utext="${errorMessage}" class="error">...</div>
+
+<form th:action="@{/registration}" th:object="${registrationForm}" method = "POST">
+    <table>
+        <tr>
+            <td>First name:</td>
+            <td><input type="text" th:field="*{firstName}" required/></td>
+            <td>
+                <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">...</span>
+            </td>
+        </tr>
+        <tr>
+            <td>Last name:</td>
+            <td><input type="text" th:field="*{lastName}" required/></td>
+            <td>
+                <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">...</span>
+            </td>
+        </tr>
+        <tr>
+            <td>Email address:</td>
+            <td><input type="text" th:field="*{emailAddress}" required/></td>
+            <td>
+                <span th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}">...</span>
+            </td>
+        </tr>
+        <tr>
+            <td>Birth date:</td>
+            <td><input type="date" th:value="*{birthDate}" th:field="*{birthDate}" required/></td>
+            <td>
+                <span th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}">...</span>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <input type="submit" value="Submit"/>
+                <button type="cancel" onclick="location.href='/'">Cancel</button>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

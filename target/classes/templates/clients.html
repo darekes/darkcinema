@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Clients</title>
+</head>
+<body>
+<h2>Client list:</h2>
+<table border = 1>
+    <tr>
+        <td>First name:</td>
+        <td>Last name:</td>
+        <td>Email address:</td>
+        <td>Birth date:</td>
+    </tr>
+    <tr th:each = "client : ${clients}">
+        <td th:utext="${client.firstName}">...</td>
+        <td th:utext="${client.lastName}">...</td>
+        <td th:utext="${client.emailAddress}">...</td>
+        <td th:utext="${client.birthDate}">...</td>
+    </tr>
+</table>
+</body>
+</html>

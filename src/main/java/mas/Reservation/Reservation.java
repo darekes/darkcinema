@@ -1,10 +1,11 @@
 package mas.Reservation;
 
-import mas.Clients.Client;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import mas.Person.Client;
+import mas.Promotion.Promotion;
+import mas.Seance.Seance;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 
 /**
@@ -17,18 +18,19 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
     private LocalDate reservationDate;
     private Boolean isPaid;
-    private Seance seanceId;
-    private Promotion promotionId;
-    private Client clietID;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="promotionId")
+    private Promotion promotion;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="clientId")
+    private Client client;
 
-    public Reservation(LocalDate reservationDate, Boolean isPaid, Seance seanceId, Promotion promotionId, Client clietID) {
+    public Reservation(LocalDate reservationDate, Boolean isPaid) {
         this.reservationDate = reservationDate;
         this.isPaid = isPaid;
-        this.seanceId = seanceId;
-        this.promotionId = promotionId;
-        this.clietID = clietID;
     }
 
     public Long getId() {
@@ -55,27 +57,19 @@ public class Reservation {
         isPaid = paid;
     }
 
-    public Seance getSeanceId() {
-        return seanceId;
+    public Promotion getPromotion() {
+        return promotion;
     }
 
-    public void setSeanceId(Seance seanceId) {
-        this.seanceId = seanceId;
+    public void setPromotion(Promotion promotion) {
+        this.promotion = promotion;
     }
 
-    public Promotion getPromotionId() {
-        return promotionId;
+    public Client getClient() {
+        return client;
     }
 
-    public void setPromotionId(Promotion promotionId) {
-        this.promotionId = promotionId;
-    }
-
-    public Client getClietID() {
-        return clietID;
-    }
-
-    public void setClietID(Client clietID) {
-        this.clietID = clietID;
+    public void setClient(Client client) {
+        this.client = client;
     }
 }

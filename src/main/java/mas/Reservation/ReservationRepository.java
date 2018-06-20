@@ -1,5 +1,6 @@
 package mas.Reservation;
 
+import mas.Seance.Seance;
 import java.time.LocalDate;
 import java.util.List;
 

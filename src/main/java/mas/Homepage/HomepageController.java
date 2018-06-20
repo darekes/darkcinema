@@ -1,6 +1,6 @@
 package mas.Homepage;
 
-import mas.Clients.ClientService;
+import mas.Person.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

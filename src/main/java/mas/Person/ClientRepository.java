@@ -1,4 +1,4 @@
-package mas.Clients;
+package mas.Person;
 
 import org.springframework.data.repository.CrudRepository;
 import java.util.List;

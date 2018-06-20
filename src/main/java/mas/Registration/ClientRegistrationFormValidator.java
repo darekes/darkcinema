@@ -1,7 +1,6 @@
 package mas.Registration;
 
-import mas.Clients.ClientService;
-import org.apache.commons.validator.routines.EmailValidator;
+import mas.Person.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -14,8 +13,6 @@ import org.springframework.validation.Validator;
 
 @Component
 public class ClientRegistrationFormValidator implements Validator{
-
-    private EmailValidator emailValidator = EmailValidator.getInstance();
 
     @Autowired
     ClientService clientService;
@@ -33,7 +30,7 @@ public class ClientRegistrationFormValidator implements Validator{
         ValidationUtils.rejectIfEmptyOrWhitespace(errors,"emailAddress", "NotEmpty.ClientRegistrationForm.emailAddress");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors,"birthDate", "NotEmpty.ClientRegistrationForm.birthDate");
 
-        if(!emailValidator.isValid(registrationForm.getEmailAddress())){
+        if(!clientService.isEmailValid(registrationForm.getEmailAddress())){
             errors.rejectValue("emailAddress", "Pattern.ClientRegistrationForm.emailAddress");
         }
 

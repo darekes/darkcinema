@@ -1,7 +1,8 @@
-package mas.Clients;
+package mas.Person;
 
 import mas.Homepage.HomepageController;
 import mas.Registration.ClientRegistrationForm;
+import org.apache.commons.validator.routines.EmailValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +21,9 @@ public class ClientService {
 
     @Autowired
     ClientRepository clientRepository;
+
+    private EmailValidator emailValidator = EmailValidator.getInstance();
+
     private static final Logger LOGGER = LoggerFactory.getLogger(HomepageController.class);
 
     public void fillInitialData(){
@@ -69,5 +72,9 @@ public class ClientService {
         Iterable<Client> iterable = clientRepository.findAll();
         iterable.forEach(list::add);
         return list;
+    }
+
+    public boolean isEmailValid(String emailAddress){
+        return emailValidator.isValid(emailAddress);
     }
 }

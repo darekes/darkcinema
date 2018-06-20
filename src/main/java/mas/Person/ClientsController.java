@@ -1,4 +1,4 @@
-package mas.Clients;
+package mas.Person;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

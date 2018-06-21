@@ -8,18 +8,16 @@
 <h2>All reservations:</h2>
 <table border = 1>
     <tr>
-        <td>Client:</td>
-        <td>Film:</td>
-        <td>Hall:</td>
-        <td>Start time:</td>
+        <td>Client name:</td>
+        <td>Film title:</td>
+        <td>Hall number:</td>
         <td>Is paid:</td>
     </tr>
     <tr th:each = "reservation : ${reservations}">
-        <td th:utext="${reservation.clientId}">...</td>
-        <td th:utext="${reservation.seanceId}">...</td>
-        <td th:utext="${reservation.seanceId}">...</td>
-        <td th:utext="${reservation.seanceId}">...</td>
-        <td th:utext="${reservation.isPaid}">...</td>
+        <td th:text="${reservation.client.firstName}">...</td>
+        <td th:text="${reservation.seance.film.title}">...</td>
+        <td th:text="${reservation.seance.hall.number}">...</td>
+        <td th:text="${reservation.isPaid} ? 'Yes' : 'No'">...</td>
     </tr>
 </table>
 </body>

@@ -53,4 +53,16 @@ public class ClientService {
     public boolean isEmailValid(String emailAddress){
         return emailValidator.isValid(emailAddress);
     }
+
+    public Client getClientById(Long id){
+        List<Client> list = new ArrayList<>();
+        Iterable<Client> iterable = clientRepository.findAll();
+        iterable.forEach(list::add);
+        for(Client client : list){
+            if(client.getId().equals(id)){
+                return client;
+            }
+        }
+        return null;
+    }
 }

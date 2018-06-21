@@ -13,6 +13,7 @@ import mas.Reservation.Reservation;
 import mas.Reservation.ReservationRepository;
 import mas.Seance.Seance;
 import mas.Seance.SeanceRepository;
+import mas.Seance.SeanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +48,9 @@ public class InitialDataPopulator {
 
     @Autowired
     ReservationRepository reservationRepository;
+
+    @Autowired
+    SeanceService seanceService;
 
     private boolean isInitialDataFilled = false;
 
@@ -108,7 +112,7 @@ public class InitialDataPopulator {
             film1.setTitle("James Bond");
             film1.setCategory(Category.ADVENTURE);
             film1.setProductionYear(1990);
-            film1.setLength(new BigDecimal("1:30"));
+            film1.setLength(BigDecimal.valueOf(1,30));
             film1.setFilmDirector(filmDirector1);
             filmRepository.save(film1);
 
@@ -116,7 +120,7 @@ public class InitialDataPopulator {
             film2.setTitle("Ogniem i mieczem");
             film2.setCategory(Category.WAR);
             film2.setProductionYear(1980);
-            film2.setLength(new BigDecimal("2:30"));
+            film2.setLength(BigDecimal.valueOf(2,30));
             film2.setFilmDirector(filmDirector2);
             filmRepository.save(film2);
 
@@ -124,7 +128,7 @@ public class InitialDataPopulator {
             film3.setTitle("Poranek kojota");
             film3.setCategory(Category.COMEDY);
             film3.setProductionYear(1970);
-            film3.setLength(new BigDecimal("1:45"));
+            film3.setLength(BigDecimal.valueOf(1,45));
             film3.setFilmDirector(filmDirector3);
             filmRepository.save(film3);
 
@@ -133,32 +137,32 @@ public class InitialDataPopulator {
             hall1.setNumber(1);
             hall1.setFloor(Floor.FIRST_FLOOR);
             hall1.setNumberOfSeats(25);
-            hall1.setScreenSurface(new BigDecimal("24x18"));
-            hall1.setSurface(new BigDecimal("45 m2"));
+            hall1.setScreenSurface(BigDecimal.valueOf(260));
+            hall1.setSurface(BigDecimal.valueOf(45));
             hallRepository.save(hall1);
 
             Hall hall2 = new Hall();
             hall2.setNumber(2);
             hall2.setFloor(Floor.GROUND_FLOOR);
             hall2.setNumberOfSeats(35);
-            hall2.setScreenSurface(new BigDecimal("26x18"));
-            hall2.setSurface(new BigDecimal("40 m2"));
+            hall2.setScreenSurface(BigDecimal.valueOf(280));
+            hall2.setSurface(BigDecimal.valueOf(40));
             hallRepository.save(hall2);
 
             Hall hall3 = new Hall();
             hall3.setNumber(3);
             hall3.setFloor(Floor.GROUND_FLOOR);
             hall3.setNumberOfSeats(40);
-            hall3.setScreenSurface(new BigDecimal("26x18"));
-            hall3.setSurface(new BigDecimal("50 m2"));
+            hall3.setScreenSurface(BigDecimal.valueOf(300));
+            hall3.setSurface(BigDecimal.valueOf(50));
             hallRepository.save(hall3);
 
             Hall hall4 = new Hall();
             hall4.setNumber(4);
             hall4.setFloor(Floor.SECOND_FLOOR);
             hall4.setNumberOfSeats(30);
-            hall4.setScreenSurface(new BigDecimal("22x16"));
-            hall4.setSurface(new BigDecimal("25 m2"));
+            hall4.setScreenSurface(BigDecimal.valueOf(240));
+            hall4.setSurface(BigDecimal.valueOf(25));
             hallRepository.save(hall4);
 
 
@@ -169,7 +173,7 @@ public class InitialDataPopulator {
             promotion1.setEndDate(LocalDate.of(2018, Month.JUNE, 30).atTime(6, 0));
             promotion1.setRegulations("regulations...");
             promotion1.setActive(Boolean.TRUE);
-            promotion1.setDiscount(new BigDecimal("10.00"));
+            promotion1.setDiscount(BigDecimal.valueOf(10,00));
             promotionRepository.save(promotion1);
 
             //seances
@@ -191,11 +195,13 @@ public class InitialDataPopulator {
 
             //reservations
             Reservation reservation1 = new Reservation();
-            reservation1.setPaid(Boolean.FALSE);
+            reservation1.setIsPaid(false);
             reservation1.setReservationDate(LocalDateTime.now());
             reservation1.setPromotion(promotion1);
             reservation1.setClient(client1);
             reservation1.setSeance(seance1);
+            seanceService.incrementAmountOfVisitors(seance1);
+            reservationRepository.save(reservation1);
 
             isInitialDataFilled = true;
         }

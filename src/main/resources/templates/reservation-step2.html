@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation - step 2</title>
+</head>
+<body>
+<h2>All clients:</h2>
+<table border = 1>
+    <tr>
+        <td>First name:</td>
+        <td>Last name:</td>
+        <td>Email address</td>
+    </tr>
+    <tr th:each = "client : ${clients}">
+        <td th:text="${client.firstName}">...</td>
+        <td th:text="${client.lastName}">...</td>
+        <td th:text="${client.emailAddress}">...</td>
+    </tr>
+</table>
+<span>&nbsp;&nbsp;</span>
+<h2>Please choose client for reservation:</h2>
+<form th:action="@{/reservation-step3}" method = "GET">
+    <table>
+        <tr>
+            <td>Select client:</td>
+            <td>
+                <select name="clientId">
+                    <option th:each="client : ${clients}"
+                            th:value="${client.id}"
+                            th:text="${client.firstName} + ' ' + ${client.lastName}"/>
+                </select>
+            </td>
+        </tr>
+        <tr>
+        <td><button type = "submit">Add client</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

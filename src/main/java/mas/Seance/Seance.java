@@ -28,6 +28,7 @@ public class Seance {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="filmId")
     private Film film;
+    private boolean hasFreeSpaces;
 
     public Seance(){}
 
@@ -83,5 +84,13 @@ public class Seance {
 
     public void setFilm(Film film) {
         this.film = film;
+    }
+
+    public boolean isHasFreeSpaces() {
+        return hasFreeSpaces;
+    }
+
+    public void setHasFreeSpaces(boolean hasFreeSpaces) {
+        this.hasFreeSpaces = hasFreeSpaces;
     }
 }

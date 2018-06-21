@@ -21,7 +21,7 @@ public class Reservation {
     private Long id;
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
     private LocalDateTime reservationDate;
-    private Boolean isPaid;
+    private boolean isPaid;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="promotionId")
     private Promotion promotion;
@@ -55,11 +55,11 @@ public class Reservation {
         this.reservationDate = reservationDate;
     }
 
-    public Boolean getPaid() {
+    public boolean getIsPaid() {
         return isPaid;
     }
 
-    public void setPaid(Boolean paid) {
+    public void setIsPaid(boolean paid) {
         isPaid = paid;
     }
 

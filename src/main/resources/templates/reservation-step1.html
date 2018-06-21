@@ -4,21 +4,41 @@
     <meta charset="UTF-8">
     <title>Reservation - step 1</title>
 </head>
-<body>
-<h2>All seances::</h2>
+<h2>All seances:</h2>
 <table border = 1>
     <tr>
-        <td>Start date:</td>
-        <td>End date:</td>
         <td>Film title:</td>
         <td>Hall number:</td>
+        <td>Amount of visitors</td>
+        <td>Start date:</td>
+        <td>End date:</td>
     </tr>
     <tr th:each = "seance : ${seances}">
-        <td th:utext="${seance.startDate}">...</td>
-        <td th:utext="${seance.endDate}">...</td>
-        <td th:utext="${seance.filmId}">...</td>
-        <td th:utext="${seance.hallId}">...</td>
+        <td th:text="${seance.film.title}">...</td>
+        <td th:text="${seance.hall.number}">...</td>
+        <td th:text="${seance.amountOfVisitors}">...</td>
+        <td th:text="${seance.startDate}">...</td>
+        <td th:text="${seance.endDate}">...</td>
     </tr>
 </table>
+<span>&nbsp;&nbsp;</span>
+<h2>Please choose seance for reservation:</h2>
+    <form th:action="@{/reservation-step2}" method = "GET">
+    <table>
+        <tr>
+            <td>Select seance:</td>
+            <td>
+                <select name = "seanceId">
+                    <option th:each="seance : ${seances}"
+                            th:value="${seance.id}"
+                            th:text="'Film: ' + ${seance.film.title} + ' in hall: ' + ${seance.hall.number}"/>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><button type = "submit">Add seance</button></td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>

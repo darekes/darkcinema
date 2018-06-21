@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>All seances</title>
+</head>
+<body>
+<h2>All seances:</h2>
+<table border = 1>
+    <tr>
+        <td>Film title:</td>
+        <td>Hall number:</td>
+        <td>Amount of visitors</td>
+        <td>Start date:</td>
+        <td>End date:</td>
+    </tr>
+    <tr th:each = "seance : ${seances}">
+        <td th:text="${seance.film.title}">...</td>
+        <td th:text="${seance.hall.number}">...</td>
+        <td th:text="${seance.amountOfVisitors}">...</td>
+        <td th:text="${seance.startDate}">...</td>
+        <td th:text="${seance.endDate}">...</td>
+    </tr>
+</table>
+</body>
+</html>

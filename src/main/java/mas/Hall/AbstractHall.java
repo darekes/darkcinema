@@ -12,7 +12,7 @@ public abstract class AbstractHall {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long number;
+    private int number;
     private BigDecimal surface;
     private int numberOfSeats;
     @Enumerated(EnumType.STRING)
@@ -28,11 +28,11 @@ public abstract class AbstractHall {
         this.screenSurface = screenSurface;
     }
 
-    public Long getNumber() {
+    public int getNumber() {
         return number;
     }
 
-    public void setNumber(Long number) {
+    public void setNumber(int number) {
         this.number = number;
     }
 

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservations</title>
+</head>
+<body>
+<h2>All reservations:</h2>
+<table border = 1>
+    <tr>
+        <td>Client:</td>
+        <td>Film:</td>
+        <td>Hall:</td>
+        <td>Start time:</td>
+        <td>Is paid:</td>
+    </tr>
+    <tr th:each = "reservation : ${reservations}">
+        <td th:utext="${reservation.clientId}">...</td>
+        <td th:utext="${reservation.seanceId}">...</td>
+        <td th:utext="${reservation.seanceId}">...</td>
+        <td th:utext="${reservation.seanceId}">...</td>
+        <td th:utext="${reservation.isPaid}">...</td>
+    </tr>
+</table>
+</body>
+</html>

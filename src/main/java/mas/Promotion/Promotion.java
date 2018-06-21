@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * Created by Darek on 2018-06-20.
@@ -20,15 +21,17 @@ public class Promotion {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
-    private LocalDate startDate;
+    private LocalDateTime startDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
-    private LocalDate endDate;
+    private LocalDateTime endDate;
     private String name;
     private Boolean isActive;
     private String regulations;
     private BigDecimal discount;
 
-    public Promotion(LocalDate startDate, LocalDate endDate, String name, Boolean isActive, String regulations, BigDecimal discount) {
+    public Promotion(){}
+
+    public Promotion(LocalDateTime startDate, LocalDateTime endDate, String name, Boolean isActive, String regulations, BigDecimal discount) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.name = name;
@@ -45,19 +48,19 @@ public class Promotion {
         this.id = id;
     }
 
-    public LocalDate getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 
@@ -65,7 +68,7 @@ public class Promotion {
         return name;
     }
 
-    public void setNazwa(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 

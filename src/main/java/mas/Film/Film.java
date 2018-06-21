@@ -1,6 +1,7 @@
 package mas.Film;
 
 import mas.Person.Client;
+import mas.Person.FilmDirector;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -20,8 +21,10 @@ public class Film {
     @Enumerated(EnumType.STRING)
     private Category category;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "clientId")
-    private Client client;
+    @JoinColumn(name = "filmDirectorId")
+    private FilmDirector filmDirector;
+
+    public Film(){}
 
     public Film(String title, int productionYear, BigDecimal length, Category category) {
         this.title = title;
@@ -70,11 +73,11 @@ public class Film {
         this.category = category;
     }
 
-    public Client getClient() {
-        return client;
+    public FilmDirector getFilmDirector() {
+        return filmDirector;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setFilmDirector(FilmDirector filmDirector) {
+        this.filmDirector = filmDirector;
     }
 }

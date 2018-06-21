@@ -6,6 +6,7 @@ import mas.Reservation.Reservation;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * Created by Darek on 2018-06-20.
@@ -17,9 +18,9 @@ public class Seance {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
-    private LocalDate startDate;
+    private LocalDateTime startDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
-    private LocalDate endDate;
+    private LocalDateTime endDate;
     private int amountOfVisitors;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="hallId")
@@ -27,12 +28,10 @@ public class Seance {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="filmId")
     private Film film;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="reservationId")
-    private Reservation reservation;
 
+    public Seance(){}
 
-    public Seance(LocalDate startDate, LocalDate endDate) {
+    public Seance(LocalDateTime startDate, LocalDateTime endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.amountOfVisitors = 0;
@@ -46,19 +45,19 @@ public class Seance {
         this.id = id;
     }
 
-    public LocalDate getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 
@@ -84,13 +83,5 @@ public class Seance {
 
     public void setFilm(Film film) {
         this.film = film;
-    }
-
-    public Reservation getReservation() {
-        return reservation;
-    }
-
-    public void setReservation(Reservation reservation) {
-        this.reservation = reservation;
     }
 }

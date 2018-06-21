@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * Created by Darek on 2018-06-13.
@@ -19,7 +20,7 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
-    private LocalDate reservationDate;
+    private LocalDateTime reservationDate;
     private Boolean isPaid;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="promotionId")
@@ -27,8 +28,13 @@ public class Reservation {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="clientId")
     private Client client;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="seanceId")
+    private Seance seance;
 
-    public Reservation(LocalDate reservationDate, Boolean isPaid) {
+    public Reservation(){}
+
+    public Reservation(LocalDateTime reservationDate, Boolean isPaid) {
         this.reservationDate = reservationDate;
         this.isPaid = isPaid;
     }
@@ -41,11 +47,11 @@ public class Reservation {
         this.id = id;
     }
 
-    public LocalDate getReservationDate() {
+    public LocalDateTime getReservationDate() {
         return reservationDate;
     }
 
-    public void setReservationDate(LocalDate reservationDate) {
+    public void setReservationDate(LocalDateTime reservationDate) {
         this.reservationDate = reservationDate;
     }
 
@@ -71,5 +77,13 @@ public class Reservation {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public Seance getSeance() {
+        return seance;
+    }
+
+    public void setSeance(Seance seance) {
+        this.seance = seance;
     }
 }

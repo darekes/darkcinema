@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation - step 1</title>
+</head>
+<body>
+<h2>All seances::</h2>
+<table border = 1>
+    <tr>
+        <td>Start date:</td>
+        <td>End date:</td>
+        <td>Film title:</td>
+        <td>Hall number:</td>
+    </tr>
+    <tr th:each = "seance : ${seances}">
+        <td th:utext="${seance.startDate}">...</td>
+        <td th:utext="${seance.endDate}">...</td>
+        <td th:utext="${seance.filmId}">...</td>
+        <td th:utext="${seance.hallId}">...</td>
+    </tr>
+</table>
+</body>
+</html>

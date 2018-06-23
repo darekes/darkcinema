@@ -1,10 +1,7 @@
 package mas.Seance;
 
-import mas.Person.Client;
-import mas.Reservation.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.*;
 
 /**

@@ -3,22 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Reservations</title>
+    <style>
+        button{
+            margin-top: 10px;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 <h2>All reservations:</h2>
 <table border = 1>
     <tr>
-        <td>Client name:</td>
-        <td>Film title:</td>
-        <td>Hall number:</td>
-        <td>Is paid:</td>
+        <td><span class = "bold">Client name:</span></td>
+        <td><span class = "bold">Film title:</span></td>
+        <td><span class = "bold">Hall number:</span></td>
+        <td><span class = "bold">Total cost:</span></td>
+        <td><span class = "bold">Is paid:</span></td>
     </tr>
     <tr th:each = "reservation : ${reservations}">
         <td th:text="${reservation.client.firstName}">...</td>
         <td th:text="${reservation.seance.film.title}">...</td>
         <td th:text="${reservation.seance.hall.number}">...</td>
+        <td th:text="${reservation.cost}">...</td>
         <td th:text="${reservation.isPaid} ? 'Yes' : 'No'">...</td>
     </tr>
 </table>
+<div>
+    <button type="cancel" onclick="location.href='/'">Go to homepage</button>
+</div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 package mas.Film;
 
-import mas.Person.Client;
 import mas.Person.FilmDirector;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 /**
  * Created by Darek on 2018-06-14.
  */
+
 @Entity
 public class Film {
 

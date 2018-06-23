@@ -15,6 +15,7 @@ public class Client extends Person{
 
     public Client(){
         super();
+        this.numberOfVisits = 0;
     }
 
     public Client(String firstName, String lastName, LocalDate birthDate, String emailAddress) {
@@ -38,4 +39,5 @@ public class Client extends Person{
     public void setNumberOfVisits(int numberOfVisits) {
         this.numberOfVisits = numberOfVisits;
     }
+
 }

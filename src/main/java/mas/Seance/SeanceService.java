@@ -24,16 +24,16 @@ public class SeanceService {
 
     public void incrementAmountOfVisitors(Seance seance){
         seance.setAmountOfVisitors(seance.getAmountOfVisitors() + 1);
-        if(hasFreeSpaces(seance)){
-            seance.setHasFreeSpaces(true);
-        } else {
-            seance.setHasFreeSpaces(false);
-        }
+        seance.setHasFreeSpaces(hasFreeSpaces(seance));
         seanceRepository.save(seance);
     }
 
     public boolean hasFreeSpaces(Seance seance){
         return seance.getHall().getNumberOfSeats() > seance.getAmountOfVisitors();
+    }
+
+    public int getFreeSpacesAmount(Seance seance){
+        return seance.getHall().getNumberOfSeats() - seance.getAmountOfVisitors();
     }
 
     public Seance getSeanceById(Long id){

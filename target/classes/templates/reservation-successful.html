@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Success</title>
+    <style>
+        button{
+            margin-top: 10px;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h2>Congratulations! You've confirmed new reservation.&nbsp;<br>Below details:</h2>
+<div>
+    <ul>
+        <li><span class="bold">Client: </span><span th:text="${reservation.client.firstName} + ' ' + ${reservation.client.lastName}"></span></li>
+        <li><span class="bold">Film title: </span><span th:text="${reservation.seance.film.title}"></span></li>
+        <li><span class="bold">Hall number: </span><span th:text="${reservation.seance.hall.number}"></span></li>
+        <li><span class="bold">Seance start date: </span><span th:text="${reservation.seance.startDate}"></span></li>
+        <li><span class="bold">Seance end date: </span><span th:text="${reservation.seance.endDate}"></span></li>
+        <li><span class="bold">Total cost: </span><span th:text="${reservation.cost}"> PLN</span></li>
+    </ul>
+</div>
+<button type="submit" onclick="location.href='/'">Go to homepage</button>
+<button type="submit" onclick="location.href='/reservations'">Show all reservations</button>
+</body>
+</html>

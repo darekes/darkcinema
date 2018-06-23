@@ -12,6 +12,7 @@ public abstract class AbstractHall {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private int number;
     private BigDecimal surface;
     private int numberOfSeats;
@@ -26,6 +27,14 @@ public abstract class AbstractHall {
         this.numberOfSeats = numberOfSeats;
         this.floor = floor;
         this.screenSurface = screenSurface;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public int getNumber() {

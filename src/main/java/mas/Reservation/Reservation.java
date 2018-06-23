@@ -1,12 +1,12 @@
 package mas.Reservation;
 
+import mas.Discounts.LoyaltyProgram;
 import mas.Person.Client;
-import mas.Promotion.Promotion;
 import mas.Seance.Seance;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
@@ -23,20 +23,28 @@ public class Reservation {
     private LocalDateTime reservationDate;
     private boolean isPaid;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="promotionId")
-    private Promotion promotion;
+    @JoinColumn(name="loyaltyProgramId")
+    private LoyaltyProgram loyaltyProgram;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="clientId")
     private Client client;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="seanceId")
     private Seance seance;
+    private BigDecimal cost;
+    @Enumerated(EnumType.STRING)
+    private State state;
 
-    public Reservation(){}
+    public Reservation(){
+        this.cost = BigDecimal.valueOf(30,0);
+        state = State.NEW;
+    }
 
     public Reservation(LocalDateTime reservationDate, Boolean isPaid) {
         this.reservationDate = reservationDate;
         this.isPaid = isPaid;
+        this.cost = BigDecimal.valueOf(30,0);
+        state = State.NEW;
     }
 
     public Long getId() {
@@ -63,12 +71,12 @@ public class Reservation {
         isPaid = paid;
     }
 
-    public Promotion getPromotion() {
-        return promotion;
+    public LoyaltyProgram getLoyaltyProgram() {
+        return loyaltyProgram;
     }
 
-    public void setPromotion(Promotion promotion) {
-        this.promotion = promotion;
+    public void setLoyaltyProgram(LoyaltyProgram loyaltyProgram) {
+        this.loyaltyProgram = loyaltyProgram;
     }
 
     public Client getClient() {
@@ -85,5 +93,21 @@ public class Reservation {
 
     public void setSeance(Seance seance) {
         this.seance = seance;
+    }
+
+    public BigDecimal getCost() {
+        return cost;
+    }
+
+    public void setCost(BigDecimal cost) {
+        this.cost = cost;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 }

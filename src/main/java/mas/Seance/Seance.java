@@ -30,12 +30,16 @@ public class Seance {
     private Film film;
     private boolean hasFreeSpaces;
 
-    public Seance(){}
+    public Seance(){
+        this.amountOfVisitors = 0;
+        this.hasFreeSpaces = true;
+    }
 
     public Seance(LocalDateTime startDate, LocalDateTime endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.amountOfVisitors = 0;
+        this.hasFreeSpaces = true;
     }
 
     public Long getId() {
@@ -86,7 +90,7 @@ public class Seance {
         this.film = film;
     }
 
-    public boolean isHasFreeSpaces() {
+    public boolean getHasFreeSpaces() {
         return hasFreeSpaces;
     }
 

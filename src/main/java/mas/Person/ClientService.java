@@ -1,5 +1,6 @@
 package mas.Person;
 
+import mas.Discounts.LoyaltyProgram;
 import mas.Homepage.HomepageController;
 import mas.Registration.ClientRegistrationForm;
 import org.apache.commons.validator.routines.EmailValidator;
@@ -64,5 +65,14 @@ public class ClientService {
             }
         }
         return null;
+    }
+
+    public void incrementVisits(Client client){
+        client.setNumberOfVisits(client.getNumberOfVisits() + 1);
+        clientRepository.save(client);
+    }
+
+    public boolean isClientAbleToGetDiscount(Client client, LoyaltyProgram loyaltyProgram){
+        return client.getNumberOfVisits() >= loyaltyProgram.getMinimumVisits();
     }
 }

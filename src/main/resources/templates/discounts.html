@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Discounts</title>
+    <style>
+        .bold {
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-<p>This is discounts</p>
+<h2>Loyalty Program details:</h2>
+<div>
+    <ul>
+        <li><span class="bold">Name: </span><span th:text="${program.name}"></span></li>
+        <li><span class="bold">Discount: </span><span th:text="${program.discount}"></span></li>
+        <li><span class="bold">Minimum visits required: </span><span th:text="${program.minimumVisits}"></span></li>
+    </ul>
+</div>
+<div>
+    <h3><span th:text="'Chosen client: ' + ${client.firstName} + ' ' + ${client.lastName}
+     + ' has ' + ${client.numberOfVisits} + ' visits while minimum amount to qualify Loyalty Program is '
+     + ${program.minimumVisits} + '.'"></span></h3>
+</div>
+<div th:if="${isClientAbleToGetDiscount}">
+    <span><button type="submit" onclick="location.href='/confirm-registration?discountApplied=true'">Apply discount and confirm registration</button></span>
+</div>
+<div>
+    <span><button type="submit" onclick="location.href='/confirm-registration'">Confirm registration</button></span>
+</div>
 </body>
 </html>

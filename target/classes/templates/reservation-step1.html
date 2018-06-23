@@ -3,20 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Reservation - step 1</title>
+    <style>
+        .unavailable{
+            background-color: #d7ecc3;
+        }
+
+        .available{
+            background-color: #ffb6b9;
+        }
+    </style>
 </head>
 <h2>All seances:</h2>
 <table border = 1>
     <tr>
-        <td>Film title:</td>
-        <td>Hall number:</td>
-        <td>Amount of visitors</td>
-        <td>Start date:</td>
-        <td>End date:</td>
+        <td><span><b>Film title:</b></span></td>
+        <td><span><b>Hall number:</b></span></td>
+        <td><span><b>Registered visitors:</b></span></td>
+        <td><span><b>Available spaces:</b></span></td>
+        <td><span><b>Has free spaces:</b></span></td>
+        <td><span><b>Start date:</b></span></td>
+        <td><span><b>End date:</b></span></td>
     </tr>
-    <tr th:each = "seance : ${seances}">
+    <tr th:classappend="${seance.hasFreeSpaces} ? unavailable : available" th:each = "seance : ${seances}">
         <td th:text="${seance.film.title}">...</td>
         <td th:text="${seance.hall.number}">...</td>
         <td th:text="${seance.amountOfVisitors}">...</td>
+        <td th:text="${seance.hall.numberOfSeats - seance.amountOfVisitors}">...</td>
+        <td th:text="${seance.hasFreeSpaces} ? 'Yes' : 'No'">...</td>
         <td th:text="${seance.startDate}">...</td>
         <td th:text="${seance.endDate}">...</td>
     </tr>
@@ -31,7 +44,8 @@
                 <select name = "seanceId">
                     <option th:each="seance : ${seances}"
                             th:value="${seance.id}"
-                            th:text="'Film: ' + ${seance.film.title} + ' in hall: ' + ${seance.hall.number}"/>
+                            th:text="'Film: ' + ${seance.film.title} + ', in hall: ' + ${seance.hall.number}"
+                            th:if="${seance.hasFreeSpaces}"/>
                 </select>
             </td>
         </tr>

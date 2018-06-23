@@ -3,15 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Clients</title>
+    <style>
+        button{
+            margin-top: 10px;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 <h2>Client list:</h2>
 <table border = 1>
     <tr>
-        <td>First name:</td>
-        <td>Last name:</td>
-        <td>Email address:</td>
-        <td>Birth date:</td>
+        <td><span class="bold">First name:</span></td>
+        <td><span class="bold">Last name:</span></td>
+        <td><span class="bold">Email address:</span></td>
+        <td><span class="bold">Birth date:</span></td>
     </tr>
     <tr th:each = "client : ${clients}">
         <td th:utext="${client.firstName}">...</td>
@@ -20,5 +29,8 @@
         <td th:utext="${client.birthDate}">...</td>
     </tr>
 </table>
+<div>
+    <button type="cancel" onclick="location.href='/'">Go to homepage</button>
+</div>
 </body>
 </html>

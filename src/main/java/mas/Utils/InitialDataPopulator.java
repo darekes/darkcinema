@@ -1,5 +1,7 @@
 package mas.Utils;
 
+import mas.Discounts.LoyaltyProgram;
+import mas.Discounts.LoyaltyProgramRepository;
 import mas.Film.Category;
 import mas.Film.Film;
 import mas.Film.FilmRepository;
@@ -7,8 +9,6 @@ import mas.Hall.Floor;
 import mas.Hall.Hall;
 import mas.Hall.HallRepository;
 import mas.Person.*;
-import mas.Promotion.Promotion;
-import mas.Promotion.PromotionRepository;
 import mas.Reservation.Reservation;
 import mas.Reservation.ReservationRepository;
 import mas.Seance.Seance;
@@ -41,7 +41,7 @@ public class InitialDataPopulator {
     HallRepository hallRepository;
 
     @Autowired
-    PromotionRepository promotionRepository;
+    LoyaltyProgramRepository loyaltyProgramRepository;
 
     @Autowired
     SeanceRepository seanceRepository;
@@ -136,7 +136,7 @@ public class InitialDataPopulator {
             Hall hall1 = new Hall();
             hall1.setNumber(1);
             hall1.setFloor(Floor.FIRST_FLOOR);
-            hall1.setNumberOfSeats(25);
+            hall1.setNumberOfSeats(8);
             hall1.setScreenSurface(BigDecimal.valueOf(260));
             hall1.setSurface(BigDecimal.valueOf(45));
             hallRepository.save(hall1);
@@ -144,7 +144,7 @@ public class InitialDataPopulator {
             Hall hall2 = new Hall();
             hall2.setNumber(2);
             hall2.setFloor(Floor.GROUND_FLOOR);
-            hall2.setNumberOfSeats(35);
+            hall2.setNumberOfSeats(2);
             hall2.setScreenSurface(BigDecimal.valueOf(280));
             hall2.setSurface(BigDecimal.valueOf(40));
             hallRepository.save(hall2);
@@ -152,7 +152,7 @@ public class InitialDataPopulator {
             Hall hall3 = new Hall();
             hall3.setNumber(3);
             hall3.setFloor(Floor.GROUND_FLOOR);
-            hall3.setNumberOfSeats(40);
+            hall3.setNumberOfSeats(6);
             hall3.setScreenSurface(BigDecimal.valueOf(300));
             hall3.setSurface(BigDecimal.valueOf(50));
             hallRepository.save(hall3);
@@ -167,20 +167,16 @@ public class InitialDataPopulator {
 
 
             //promotions
-            Promotion promotion1 = new Promotion();
-            promotion1.setName("Globalna przecena");
-            promotion1.setStartDate(LocalDate.of(2018, Month.JUNE, 25).atTime(6, 0));
-            promotion1.setEndDate(LocalDate.of(2018, Month.JUNE, 30).atTime(6, 0));
-            promotion1.setRegulations("regulations...");
-            promotion1.setActive(Boolean.TRUE);
-            promotion1.setDiscount(BigDecimal.valueOf(10,00));
-            promotionRepository.save(promotion1);
+            LoyaltyProgram program = new LoyaltyProgram();
+            program.setName("GLOBAL DISCOUNT");
+            program.setDiscount(BigDecimal.valueOf(10,0));
+            program.setMinimumVisits(5);
+            loyaltyProgramRepository.save(program);
 
             //seances
             Seance seance1 = new Seance();
             seance1.setStartDate(LocalDate.of(2018, Month.JUNE, 26).atTime(10, 0));
             seance1.setEndDate(LocalDate.of(2018, Month.JUNE, 26).atTime(12, 30));
-            seance1.setAmountOfVisitors(0);
             seance1.setFilm(film1);
             seance1.setHall(hall1);
             seanceRepository.save(seance1);
@@ -188,7 +184,6 @@ public class InitialDataPopulator {
             Seance seance2 = new Seance();
             seance2.setStartDate(LocalDate.of(2018, Month.JUNE, 28).atTime(10, 0));
             seance2.setEndDate(LocalDate.of(2018, Month.JUNE, 28).atTime(12, 30));
-            seance2.setAmountOfVisitors(0);
             seance2.setFilm(film2);
             seance2.setHall(hall2);
             seanceRepository.save(seance2);
@@ -197,7 +192,7 @@ public class InitialDataPopulator {
             Reservation reservation1 = new Reservation();
             reservation1.setIsPaid(false);
             reservation1.setReservationDate(LocalDateTime.now());
-            reservation1.setPromotion(promotion1);
+            reservation1.setLoyaltyProgram(null);
             reservation1.setClient(client1);
             reservation1.setSeance(seance1);
             seanceService.incrementAmountOfVisitors(seance1);

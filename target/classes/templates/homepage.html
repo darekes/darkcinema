@@ -3,14 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>DarkCinema</title>
+    <style>
+        button {
+            display: block;
+            margin-top: 10px;
+        }
+
+        .center{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 200px;
+            height: 100px;
+            margin: auto;
+            background-color: #f3f3f3;
+        }
+    </style>
 </head>
 <body>
 <div class="center">
-<button type="submit" onclick="location.href='/registration'">Register new clients</button>
-<button type="submit" onclick="location.href='/clients'">All Clients</button>
-    <button type="submit" onclick="location.href='/reservations'">All reservations</button>
-    <button type="submit" onclick="location.href='/seances'">All Seances</button>
+<button type="submit" onclick="location.href='/registration'">Register new client</button>
 <button type="submit" onclick="location.href='/reservation-step1'">Make reservation</button>
+<button type="submit" onclick="location.href='/reservations'">All reservations</button>
+<button type="submit" onclick="location.href='/seances'">All Seances</button>
+<button type="submit" onclick="location.href='/clients'">All Clients</button>
 </div>
 </body>
 </html>
